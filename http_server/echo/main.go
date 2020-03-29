@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 	"strconv"
+	"time"
 
 	"github.com/labstack/echo/v4"
 )
@@ -24,6 +25,7 @@ func main() {
 	e.GET("/square", squareHandler)
 	// POST Bodyの読み込み
 	e.POST("/incr", incrementHandler)
+	e.POST("/adddate", addDateHandler)
 
 	// 8080ポートで起動
 	e.Logger.Fatal(e.Start(":8080"))
@@ -74,4 +76,14 @@ type incrRequest struct {
 	// jsonタグをつける事でjsonのunmarshalが出来る
 	// jsonパッケージに渡すので、Publicである必要がある
 	Num int `json:"num"`
+}
+
+func addDateHandler(c echo.Context) error {
+	numStr := c.Request().Header.Get("num")
+	num, err := strconv.Atoi(numStr)
+	if err != nil {
+		return echo.NewHTTPError(http.StatusBadRequest, "num is not integer")
+	}
+	base := time.Now()
+	return c.String(http.StatusOK, fmt.Sprint(base.AddDate(0, 0, num)))
 }
