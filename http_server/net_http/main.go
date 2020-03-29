@@ -8,6 +8,7 @@ import (
 	"io"
 	"net/http"
 	"strconv"
+	"time"
 )
 
 var (
@@ -23,6 +24,7 @@ func main() {
 	http.HandleFunc("/square", squareHandler)
 	// POST Bodyの読み込み
 	http.HandleFunc("/incr", incrementHandler)
+	http.HandleFunc("/adddate", addDateHandler)
 
 	// 8080ポートで起動
 	http.ListenAndServe(":8080", nil)
@@ -92,4 +94,16 @@ type incrRequest struct {
 	// jsonタグをつける事でjsonのunmarshalが出来る
 	// jsonパッケージに渡すので、Publicである必要がある
 	Num int `json:"num"`
+}
+
+func addDateHandler(w http.ResponseWriter, req *http.Request) {
+	numStr := req.Header.Get("num")
+	num, err := strconv.Atoi(numStr)
+
+	if err != nil {
+		return
+	}
+	base := time.Now()
+	w.WriteHeader(http.StatusOK)
+	fmt.Fprint(w, base.AddDate(0, 0, num))
 }
