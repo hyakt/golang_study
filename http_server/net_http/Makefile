@@ -1,6 +1,10 @@
 build:
 	go build -o bin/http_server
 
+dev:
+	make build
+	bin/http_server
+
 hello:
 	curl localhost:8080/hello
 

@@ -46,6 +46,13 @@ func squareHandler(w http.ResponseWriter, req *http.Request) {
 	numStr := req.Header.Get("num")
 	// String -> Intの変換
 	num, err := strconv.Atoi(numStr)
+
+	if num >= 100 {
+		w.WriteHeader(http.StatusBadRequest)
+		fmt.Fprint(w, "num is Over a hundread")
+		return
+	}
+
 	if err != nil {
 		// 他のエラーの可能性もあるがサンプルとして纏める
 		w.WriteHeader(http.StatusBadRequest)
