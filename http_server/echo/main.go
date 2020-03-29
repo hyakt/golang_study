@@ -46,6 +46,11 @@ func squareHandler(c echo.Context) error {
 	numStr := c.Request().Header.Get("num")
 	// String -> Intの変換
 	num, err := strconv.Atoi(numStr)
+
+	if num >= 100 {
+		return echo.NewHTTPError(http.StatusBadRequest, "Over a hundread")
+	}
+
 	if err != nil {
 		// 他のエラーの可能性もあるがサンプルとして纏める
 		return echo.NewHTTPError(http.StatusBadRequest, "num is not integer")

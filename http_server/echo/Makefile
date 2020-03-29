@@ -1,7 +1,12 @@
 mod:
 	go mod vendor
+
 build:
 	go build -o bin/echo_server
+
+dev:
+	make build
+	bin/echo_server
 
 hello:
 	curl localhost:8080/hello
