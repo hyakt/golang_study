@@ -3,10 +3,10 @@ package main
 import "fmt"
 
 func main() {
-
 	numbers := make([]*int, 0, 3)
 	for i := 0; i < 3; i++ {
-		numbers = append(numbers, &i)
+		num := i
+		numbers = append(numbers, &num)
 	}
 
 	fmt.Println("Values:", *numbers[0], *numbers[1], *numbers[2])
