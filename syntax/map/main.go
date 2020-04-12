@@ -1,7 +1,6 @@
 package main
 
 import "fmt"
-import "sort"
 
 func main() {
 	// mapが参照型である事の確認
@@ -16,25 +15,16 @@ func main() {
 	// ---------
 	// mapに対するfor
 	// 学籍番号と学生名のMap
-	studentIDMap := map[int]string{
+	studnetIDMap := map[int]string{
 		3: "田中",
 		1: "伊藤",
 		2: "佐藤",
 		4: "佐々木",
 	}
 
-	var studentIDs = []int{}
-
-	for k := range studentIDMap {
-		studentIDs = append(studentIDs, k)
-	}
-
-	sort.Slice(studentIDs, func(i, j int) bool {
-		return studentIDs[i] < studentIDs[j]
-	})
-
-	for _, id := range studentIDs {
-		fmt.Printf("Name of StudentID:%d is %s\n", id, studentIDMap[id])
+	for k, v := range studnetIDMap {
+		// fmt.Printfでフォーマットに従った文字列を標準出力に出せる
+		fmt.Printf("Name of StudentID:%d is %s\n", k, v)
 	}
 }
 

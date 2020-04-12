@@ -12,11 +12,8 @@ func main() {
 	b := a
 	a[0] = 2
 	fmt.Printf("b[0] is %d\n", b[0])
-	fmt.Printf("b[0] is %v\n", &b)
 	fmt.Printf("Address of a[0] is %v\n", &a[0])
-	fmt.Printf("Address of a[0] is %v\n", &a[1])
 	fmt.Printf("Address of b[0] is %v\n", &b[0])
-	fmt.Printf("Address of b[0] is %v\n", &b[1])
 
 	// Sliceのコピー
 	c := make([]int, 3, 3)
