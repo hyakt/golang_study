@@ -29,6 +29,7 @@ func catFile(path string) (err error) {
 		// 本当はエラーハンドリングが必要(課題)
 		if closeErr := file.Close(); closeErr != nil {
 			fmt.Println("Error Handling of file.Close()")
+			err = closeErr
 		}
 	}()
 
