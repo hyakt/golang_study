@@ -5,6 +5,7 @@ import "fmt"
 func main() {
 	numbers := make([]*int, 0, 3)
 	for i := 0; i < 3; i++ {
+		// pinnedValueという
 		num := i
 		numbers = append(numbers, &num)
 	}
